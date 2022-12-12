@@ -11,7 +11,7 @@ $font_family: "Quicksand", sans-serif;
 body {
   margin: 0;
   padding: 0;
-  background: #fff;
+  background: $bg_color;
   font-family: $font_family;
   color: $text_color;
 }
