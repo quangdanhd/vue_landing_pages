@@ -2,24 +2,24 @@ import { createRouter, createWebHistory } from "vue-router";
 // import HomePage from "@/components/HomePage.vue";
 // import AboutPage from "@/components/AboutPage.vue";
 // import ContactPage from "@/components/ContactPage.vue";
-const HomePage = () => import("@/components/HomePage.vue");
-const AboutPage = () => import("@/components/AboutPage.vue");
-const ContactPage = () => import("@/components/ContactPage.vue");
 const routes = [
   {
     path: "/",
     name: "",
-    component: HomePage,
+    // component: HomePage,
+    component: () => import("@/components/HomePage.vue"),
   },
   {
     path: "/about",
     name: "",
-    component: AboutPage,
+    // component: AboutPage,
+    component: () => import("@/components/AboutPage.vue"),
   },
   {
     path: "/contact",
     name: "",
-    component: ContactPage,
+    // component: ContactPage,
+    component: () => import("@/components/ContactPage.vue"),
   },
   {
     path: "/:catchAll(.*)",
