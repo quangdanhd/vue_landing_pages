@@ -37,14 +37,20 @@ input::-webkit-inner-spin-button {
     rgba(60, 64, 67, 0.15) 0 2px 6px 2px;
 }
 
-.form-validate {
+.form-validate-container {
   max-width: 550px;
   .form-validate-message {
+    color: #6c757d;
     height: 0;
     overflow: hidden;
     transition: all ease 0.7s;
     &.active {
       height: 21px;
+    }
+  }
+  form.is-submit {
+    .form-validate-message {
+      color: #dc3545;
     }
   }
 }

@@ -1,35 +1,55 @@
 <template>
   <div>
     <vue-top-progress ref="topProgress"></vue-top-progress>
-    <div class="m-auto mt-3 bg-white rounded p-3 box-shadow form-validate">
+    <div
+      class="m-auto mt-3 bg-white rounded p-3 box-shadow form-validate-container"
+    >
       <div class="text-center fw-bold fs-2 mb-4">Form Validate Demo</div>
-      <form class="row g-3">
+      <form class="row g-3" :class="{ 'is-submit': isSubmit }">
         <div class="col-md-12">
           <label class="form-label">First Name</label>
-          <input v-model="firstName" type="text" class="form-control" />
+          <input
+            v-model="firstName"
+            @focus="firstNameFlag = true"
+            @blur="firstNameFlag = false"
+            type="text"
+            class="form-control"
+          />
           <div
-            class="small text-muted mt-1 form-validate-message"
-            :class="{ active: !!firstNameMsg }"
+            class="small mt-1 form-validate-message"
+            :class="{ active: (firstNameFlag || isSubmit) && !!firstNameMsg }"
           >
             {{ firstNameMsg }}
           </div>
         </div>
         <div class="col-md-12">
           <label class="form-label">Last Name</label>
-          <input v-model="lastName" type="text" class="form-control" />
+          <input
+            v-model="lastName"
+            @focus="lastNameFlag = true"
+            @blur="lastNameFlag = false"
+            type="text"
+            class="form-control"
+          />
           <div
-            class="small text-muted mt-1 form-validate-message"
-            :class="{ active: !!lastNameMsg }"
+            class="small mt-1 form-validate-message"
+            :class="{ active: (lastNameFlag || isSubmit) && !!lastNameMsg }"
           >
             {{ lastNameMsg }}
           </div>
         </div>
         <div class="col-md-12">
           <label class="form-label">Email</label>
-          <input v-model="email" type="email" class="form-control" />
+          <input
+            v-model="email"
+            @focus="emailFlag = true"
+            @blur="emailFlag = false"
+            type="email"
+            class="form-control"
+          />
           <div
-            class="small text-muted mt-1 form-validate-message"
-            :class="{ active: !!emailMsg }"
+            class="small mt-1 form-validate-message"
+            :class="{ active: (emailFlag || isSubmit) && !!emailMsg }"
           >
             {{ emailMsg }}
           </div>
@@ -38,13 +58,15 @@
           <label class="form-label">Phone</label>
           <input
             v-model="phone"
+            @focus="phoneFlag = true"
+            @blur="phoneFlag = false"
             type="email"
             class="form-control"
             maxlength="10"
           />
           <div
-            class="small text-muted mt-1 form-validate-message"
-            :class="{ active: !!phoneMsg }"
+            class="small mt-1 form-validate-message"
+            :class="{ active: (phoneFlag || isSubmit) && !!phoneMsg }"
           >
             {{ phoneMsg }}
           </div>
@@ -58,7 +80,13 @@
           <input type="password" class="form-control" autocomplete />
         </div>
         <div class="col-12 text-center mt-4">
-          <button type="submit" class="btn btn-primary w-50">Submit</button>
+          <button
+            @click="submit($event)"
+            type="submit"
+            class="btn btn-primary w-50"
+          >
+            Submit
+          </button>
         </div>
       </form>
     </div>
@@ -75,14 +103,24 @@ export default {
   },
   data() {
     return {
+      // first name
       firstName: null,
       firstNameMsg: null,
+      firstNameFlag: false,
+      // last name
       lastName: null,
       lastNameMsg: null,
+      lastNameFlag: false,
+      // email
       email: null,
       emailMsg: null,
+      emailFlag: false,
+      // phone
       phone: null,
       phoneMsg: null,
+      phoneFlag: false,
+      // submit
+      isSubmit: false,
     };
   },
   mounted() {
@@ -92,8 +130,8 @@ export default {
       this.$refs.topProgress.done();
     }, 500);
   },
-  watch: {
-    firstName() {
+  methods: {
+    firstNameValid() {
       if (!this.firstName) {
         this.firstNameMsg = null;
         return;
@@ -104,7 +142,7 @@ export default {
       }
       this.firstNameMsg = null;
     },
-    lastName() {
+    lastNameValid() {
       if (!this.lastName) {
         this.lastNameMsg = null;
         return;
@@ -115,7 +153,7 @@ export default {
       }
       this.lastNameMsg = null;
     },
-    email() {
+    emailValid() {
       if (!this.email) {
         this.emailMsg = null;
         return;
@@ -133,7 +171,7 @@ export default {
       }
       this.emailMsg = null;
     },
-    phone() {
+    phoneValid() {
       if (!this.phone) {
         this.phoneMsg = null;
         return;
@@ -151,6 +189,24 @@ export default {
         return;
       }
       this.phoneMsg = null;
+    },
+    submit(e) {
+      e.preventDefault();
+      this.isSubmit = true;
+    },
+  },
+  watch: {
+    firstName() {
+      this.firstNameValid();
+    },
+    lastName() {
+      this.lastNameValid();
+    },
+    email() {
+      this.emailValid();
+    },
+    phone() {
+      this.phoneValid();
     },
   },
 };
