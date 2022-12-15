@@ -26,7 +26,13 @@
         </div>
         <div class="col-md-12">
           <label class="form-label">Email</label>
-          <input type="email" class="form-control" />
+          <input v-model="email" type="email" class="form-control" />
+          <div
+            class="small text-muted mt-1 form-validate-message"
+            :class="{ active: !!emailMsg }"
+          >
+            {{ emailMsg }}
+          </div>
         </div>
         <div class="col-md-12">
           <label class="form-label">Phone</label>
@@ -34,11 +40,11 @@
         </div>
         <div class="col-md-12">
           <label class="form-label">Password</label>
-          <input type="password" class="form-control" />
+          <input type="password" class="form-control" autocomplete />
         </div>
         <div class="col-md-12">
           <label class="form-label">Confirm password</label>
-          <input type="password" class="form-control" />
+          <input type="password" class="form-control" autocomplete />
         </div>
         <div class="col-12 text-center mt-4">
           <button type="submit" class="btn btn-primary w-50">Submit</button>
@@ -62,6 +68,8 @@ export default {
       firstNameMsg: null,
       lastName: null,
       lastNameMsg: null,
+      email: null,
+      emailMsg: null,
     };
   },
   mounted() {
@@ -93,6 +101,24 @@ export default {
         return;
       }
       this.lastNameMsg = null;
+    },
+    email() {
+      if (!this.email) {
+        this.emailMsg = null;
+        return;
+      }
+      const emailRegex =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!emailRegex.test(this.email)) {
+        this.emailMsg = "Email address is incorrect.";
+        return;
+      }
+      const emailEndRegex = /@demo.com$/;
+      if (!emailEndRegex.test(this.email)) {
+        this.emailMsg = 'Email addresses must end with "@demo.com".';
+        return;
+      }
+      this.emailMsg = null;
     },
   },
 };
