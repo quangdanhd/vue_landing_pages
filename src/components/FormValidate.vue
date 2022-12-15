@@ -36,7 +36,18 @@
         </div>
         <div class="col-md-12">
           <label class="form-label">Phone</label>
-          <input type="email" class="form-control" />
+          <input
+            v-model="phone"
+            type="email"
+            class="form-control"
+            maxlength="10"
+          />
+          <div
+            class="small text-muted mt-1 form-validate-message"
+            :class="{ active: !!phoneMsg }"
+          >
+            {{ phoneMsg }}
+          </div>
         </div>
         <div class="col-md-12">
           <label class="form-label">Password</label>
@@ -70,6 +81,8 @@ export default {
       lastNameMsg: null,
       email: null,
       emailMsg: null,
+      phone: null,
+      phoneMsg: null,
     };
   },
   mounted() {
@@ -108,7 +121,7 @@ export default {
         return;
       }
       const emailRegex =
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (!emailRegex.test(this.email)) {
         this.emailMsg = "Email address is incorrect.";
         return;
@@ -119,6 +132,25 @@ export default {
         return;
       }
       this.emailMsg = null;
+    },
+    phone() {
+      if (!this.phone) {
+        this.phoneMsg = null;
+        return;
+      }
+      if (!/\d+/.test(this.phone)) {
+        this.phoneMsg = "Phone numbers include numbers only.";
+        return;
+      }
+      if (this.phone.length !== 10) {
+        this.phoneMsg = "Phone number must have 10 digits.";
+        return;
+      }
+      if (!/^084/.test(this.phone)) {
+        this.phoneMsg = 'Phone number must start with "084".';
+        return;
+      }
+      this.phoneMsg = null;
     },
   },
 };
