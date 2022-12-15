@@ -2,7 +2,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <router-link class="navbar-brand me-1 middle" to="/">
-        <img alt="Vue logo" src="@/assets/logo.png" style="height: 25px" />
+        <!--<img alt="Vue logo" src="@/assets/logo.png" style="height: 25px" />-->
+        Dan D.
       </router-link>
       <button
         class="navbar-toggler"
