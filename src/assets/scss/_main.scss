@@ -31,3 +31,20 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   align-items: center;
 }
+
+.box-shadow {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0,
+    rgba(60, 64, 67, 0.15) 0 2px 6px 2px;
+}
+
+.form-validate {
+  max-width: 550px;
+  .form-validate-message {
+    height: 0;
+    overflow: hidden;
+    transition: all ease 0.7s;
+    &.active {
+      height: 21px;
+    }
+  }
+}

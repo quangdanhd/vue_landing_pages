@@ -22,6 +22,12 @@ const routes = [
     component: () => import("@/components/ContactPage.vue"),
   },
   {
+    path: "/form-validate",
+    name: "",
+    // component: ContactPage,
+    component: () => import("@/components/FormValidate.vue"),
+  },
+  {
     path: "/:catchAll(.*)",
     component: Error,
   },
