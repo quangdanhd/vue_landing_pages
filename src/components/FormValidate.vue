@@ -7,7 +7,10 @@
       <div class="text-center fw-bold fs-2 mb-4">Form Validate Demo</div>
       <form class="row g-3" :class="{ 'is-submit': isSubmit }">
         <div class="col-md-12">
-          <label class="form-label">First Name</label>
+          <label class="form-label">
+            First Name
+            <span class="text-danger">*</span>
+          </label>
           <input
             v-model="firstName"
             @focus="firstNameFlag = true"
@@ -39,7 +42,10 @@
           </div>
         </div>
         <div class="col-md-12">
-          <label class="form-label">Email</label>
+          <label class="form-label">
+            Email
+            <span class="text-danger">*</span>
+          </label>
           <input
             v-model="email"
             @focus="emailFlag = true"
@@ -72,7 +78,10 @@
           </div>
         </div>
         <div class="col-md-12">
-          <label class="form-label">Password</label>
+          <label class="form-label">
+            Password
+            <span class="text-danger">*</span>
+          </label>
           <input
             v-model="password"
             @focus="passwordFlag = true"
@@ -88,7 +97,10 @@
           </div>
         </div>
         <div class="col-md-12">
-          <label class="form-label">Confirm password</label>
+          <label class="form-label">
+            Confirm password
+            <span class="text-danger">*</span>
+          </label>
           <input
             v-model="confirmPassword"
             @focus="confirmPasswordFlag = true"
