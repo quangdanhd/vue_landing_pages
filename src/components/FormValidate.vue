@@ -89,7 +89,21 @@
         </div>
         <div class="col-md-12">
           <label class="form-label">Confirm password</label>
-          <input type="password" class="form-control" autocomplete />
+          <input
+            v-model="confirmPassword"
+            @focus="confirmPasswordFlag = true"
+            @blur="confirmPasswordFlag = false"
+            type="text"
+            class="form-control"
+          />
+          <div
+            class="small mt-1 form-validate-message"
+            :class="{
+              active: (confirmPasswordFlag || isSubmit) && !!confirmPasswordMsg,
+            }"
+          >
+            {{ confirmPasswordMsg }}
+          </div>
         </div>
         <div class="col-12 text-center mt-4">
           <button
@@ -170,6 +184,10 @@ export default {
       password: null,
       passwordMsg: null,
       passwordFlag: false,
+      // password
+      confirmPassword: null,
+      confirmPasswordMsg: null,
+      confirmPasswordFlag: false,
       // submit
       isSubmit: false,
     };
@@ -274,6 +292,17 @@ export default {
       }
       this.passwordMsg = null;
     },
+    confirmPasswordValid() {
+      if (!this.confirmPassword) {
+        this.confirmPasswordMsg = null;
+        return;
+      }
+      if (this.confirmPassword !== this.password) {
+        this.confirmPasswordMsg = "Confirm password does not match.";
+        return;
+      }
+      this.confirmPasswordMsg = null;
+    },
     submit(e) {
       e.preventDefault();
       this.isSubmit = true;
@@ -294,6 +323,9 @@ export default {
     },
     password() {
       this.passwordValid();
+    },
+    confirmPassword() {
+      this.confirmPasswordValid();
     },
   },
 };
