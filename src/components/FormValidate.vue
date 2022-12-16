@@ -73,7 +73,19 @@
         </div>
         <div class="col-md-12">
           <label class="form-label">Password</label>
-          <input type="password" class="form-control" autocomplete />
+          <input
+            v-model="password"
+            @focus="passwordFlag = true"
+            @blur="passwordFlag = false"
+            type="text"
+            class="form-control"
+          />
+          <div
+            class="small mt-1 form-validate-message"
+            :class="{ active: (passwordFlag || isSubmit) && !!passwordMsg }"
+          >
+            {{ passwordMsg }}
+          </div>
         </div>
         <div class="col-md-12">
           <label class="form-label">Confirm password</label>
@@ -131,7 +143,7 @@ import VueTopProgress from "vue-top-progress/src/top-progress.vue";
 import { Modal } from "bootstrap";
 
 export default {
-  name: "AboutPage",
+  name: "FormValidate",
   components: {
     VueTopProgress,
   },
@@ -154,6 +166,10 @@ export default {
       phone: null,
       phoneMsg: null,
       phoneFlag: false,
+      // password
+      password: null,
+      passwordMsg: null,
+      passwordFlag: false,
       // submit
       isSubmit: false,
     };
@@ -230,6 +246,34 @@ export default {
       }
       this.phoneMsg = null;
     },
+    passwordValid() {
+      if (!this.password) {
+        this.passwordMsg = null;
+        return;
+      }
+      if (this.password.length < 8) {
+        this.passwordMsg = "Password must be at least 10 characters.";
+        return;
+      }
+      if (!/[a-z]/.test(this.password)) {
+        this.passwordMsg = "Password must contain at least 1 lowercase letter.";
+        return;
+      }
+      if (!/[0-9]/.test(this.password)) {
+        this.passwordMsg = "Password must have at least 1 digit.";
+        return;
+      }
+      if (!/[A-Z]/.test(this.password)) {
+        this.passwordMsg = "Password must have at least 1 uppercase letter.";
+        return;
+      }
+      if (!/[!@#$%^&*]/.test(this.password)) {
+        this.passwordMsg =
+          "Password must contain at least 1 special character.";
+        return;
+      }
+      this.passwordMsg = null;
+    },
     submit(e) {
       e.preventDefault();
       this.isSubmit = true;
@@ -247,6 +291,9 @@ export default {
     },
     phone() {
       this.phoneValid();
+    },
+    password() {
+      this.passwordValid();
     },
   },
 };
