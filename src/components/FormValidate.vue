@@ -163,7 +163,7 @@ export default {
   },
   data() {
     return {
-      modal: "",
+      modal: null,
       // first name
       firstName: null,
       firstNameMsg: null,
@@ -194,15 +194,12 @@ export default {
   },
   mounted() {
     this.$refs.topProgress.start();
-    // // Use setTimeout for demo
+    // Use setTimeout for demo
     setTimeout(() => {
       this.$refs.topProgress.done();
     }, 500);
     this.modal = new Modal(document.getElementById("staticBackdrop"));
-    // this.modal.show()
-    // setTimeout(() => {
-    //   this.modal.hide()
-    // }, 2000)
+    // this.modal.hide()
   },
   methods: {
     firstNameValid() {
@@ -306,6 +303,45 @@ export default {
     submit(e) {
       e.preventDefault();
       this.isSubmit = true;
+      if (!this.firstName) {
+        this.firstNameMsg = "First name cannot be empty.";
+      }
+      // if (!this.lastName) {
+      // }
+      if (!this.email) {
+        this.emailMsg = "Email cannot be empty.";
+      }
+      // if (!this.phone) {
+      // }
+      if (!this.password) {
+        this.passwordMsg = "Password cannot be empty.";
+      } else {
+        if (!this.confirmPassword) {
+          this.confirmPasswordMsg = "Confirm password cannot be empty.";
+        }
+      }
+      let valid = true;
+      if (this.firstNameMsg) {
+        valid = false;
+      }
+      if (this.lastNameMsg) {
+        valid = false;
+      }
+      if (this.emailMsg) {
+        valid = false;
+      }
+      if (this.phoneMsg) {
+        valid = false;
+      }
+      if (this.passwordMsg) {
+        valid = false;
+      }
+      if (this.confirmPasswordMsg) {
+        valid = false;
+      }
+      if (valid) {
+        this.modal.show();
+      }
     },
   },
   watch: {
