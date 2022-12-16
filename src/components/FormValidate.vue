@@ -2,7 +2,7 @@
   <div>
     <vue-top-progress ref="topProgress"></vue-top-progress>
     <div
-      class="m-auto mt-3 bg-white rounded p-3 box-shadow form-validate-container"
+      class="m-auto mt-3 mb-5 bg-white rounded p-3 box-shadow form-validate-container"
     >
       <div class="text-center fw-bold fs-2 mb-4">Form Validate Demo</div>
       <form class="row g-3" :class="{ 'is-submit': isSubmit }">
