@@ -46,7 +46,7 @@
               class="nav-link"
               active-class="active"
               to="/electricity-cost-calculator"
-              >Electricity Cost Calculator</router-link
+              >Cost Calculator</router-link
             >
           </li>
         </ul>
