@@ -33,11 +33,12 @@
             <tbody>
               <tr>
                 <td class="row">
-                  <div class="col-8 middle">
+                  <div class="col-12 col-md-8 middle">
                     <div class="w-100">Watts (1 Kilowatt = 1000 Watts)</div>
                   </div>
-                  <div class="col-4">
+                  <div class="col-12 col-md-4">
                     <input
+                      @keyup="deviceChange(key)"
                       v-model="item.watts"
                       type="number"
                       class="form-control form-control-sm w-auto d-inline-block"
@@ -48,10 +49,10 @@
               </tr>
               <tr>
                 <td class="row">
-                  <div class="col-8 middle">
+                  <div class="col-12 col-md-8 middle">
                     <div class="w-100">Watts/1000 = Kilowatts or Kwh</div>
                   </div>
-                  <div class="col-4 middle">
+                  <div class="col-12 col-md-4 middle">
                     <div class="w-100">
                       <span class="d-inline-block">{{ item.kw }}</span>
                       <span class="ms-1 d-inline-block">Kwh</span>
@@ -61,11 +62,12 @@
               </tr>
               <tr>
                 <td class="row">
-                  <div class="col-8 middle">
+                  <div class="col-12 col-md-8 middle">
                     <div class="w-100">Hours Used</div>
                   </div>
-                  <div class="col-4">
+                  <div class="col-12 col-md-4">
                     <input
+                      @keyup="deviceChange(key)"
                       v-model="item.hours"
                       type="number"
                       class="form-control form-control-sm w-auto d-inline-block"
@@ -76,12 +78,12 @@
               </tr>
               <tr>
                 <td class="row">
-                  <div class="col-8 middle">
+                  <div class="col-12 col-md-8 middle">
                     <div class="w-100">
                       Kilowatts x Total Hours = Kilowatt Hours (Kwh)
                     </div>
                   </div>
-                  <div class="col-4 middle">
+                  <div class="col-12 col-md-4 middle">
                     <div class="w-100">
                       <span class="d-inline-block">{{ item.kwh }}</span>
                       <span class="ms-1 d-inline-block">Kwh</span>
@@ -91,11 +93,12 @@
               </tr>
               <tr>
                 <td class="row">
-                  <div class="col-8 middle">
+                  <div class="col-12 col-md-8 middle">
                     <div class="w-100">Pence Per Kwh</div>
                   </div>
-                  <div class="col-4">
+                  <div class="col-12 col-md-4">
                     <input
+                      @keyup="deviceChange(key)"
                       v-model="item.pence"
                       type="number"
                       class="form-control form-control-sm w-auto d-inline-block"
@@ -106,10 +109,10 @@
               </tr>
               <tr>
                 <td class="row">
-                  <div class="col-8 middle">
+                  <div class="col-12 col-md-8 middle">
                     <div class="w-100">Kwh x Pence Per Kwh = Cost</div>
                   </div>
-                  <div class="col-4 middle">
+                  <div class="col-12 col-md-4 middle">
                     <div class="w-100">
                       <span class="me-1 d-inline-block">£</span>
                       <span class="d-inline-block">{{ item.cost }}</span>
@@ -119,11 +122,12 @@
               </tr>
               <tr>
                 <td class="row">
-                  <div class="col-8 middle">
+                  <div class="col-12 col-md-8 middle">
                     <div class="w-100">Number of items in home</div>
                   </div>
-                  <div class="col-4">
+                  <div class="col-12 col-md-4">
                     <input
+                      @keyup="deviceChange(key)"
                       v-model="item.items"
                       type="number"
                       class="form-control form-control-sm w-auto d-inline-block"
@@ -134,10 +138,10 @@
               </tr>
               <tr class="bg-success">
                 <td class="bg-success text-white row">
-                  <div class="col-8 middle">
+                  <div class="col-12 col-md-8 middle">
                     <div class="w-100">Total Cost</div>
                   </div>
-                  <div class="col-4 middle">
+                  <div class="col-12 col-md-4 middle">
                     <div class="w-100">
                       <span class="me-1 d-inline-block">£</span>
                       <span class="d-inline-block">{{ item.totalCost }}</span>
@@ -147,13 +151,13 @@
               </tr>
               <tr class="bg-success d-none">
                 <td class="bg-success text-white row">
-                  <div class="col-8 middle">
+                  <div class="col-12 col-md-8 middle">
                     <div class="w-100">
                       Cost if you were on the cheapest electricity tariff in the
                       market
                     </div>
                   </div>
-                  <div class="col-4 middle">
+                  <div class="col-12 col-md-4 middle">
                     <div class="w-100">
                       <span class="me-1 d-inline-block">£</span>
                       <span class="d-inline-block">{{ item.tariffCost }}</span>
@@ -189,32 +193,32 @@ export default {
           pence: 51.9,
           cost: null,
           items: 1,
-          totalCost: 1.56,
-          tariffCost: 1,
+          totalCost: null,
+          tariffCost: null,
         },
         {
           name: "hoover",
-          watts: 3000,
+          watts: 1400,
           kw: null,
           hours: 1,
           kwh: null,
           pence: 51.9,
           cost: null,
           items: 1,
-          totalCost: 1.56,
-          tariffCost: 1,
+          totalCost: null,
+          tariffCost: null,
         },
         {
           name: "iron",
-          watts: 3000,
+          watts: 1100,
           kw: null,
           hours: 1,
           kwh: null,
           pence: 51.9,
           cost: null,
           items: 1,
-          totalCost: 1.56,
-          tariffCost: 1,
+          totalCost: null,
+          tariffCost: null,
         },
       ],
       activeDevice: 0,
@@ -243,7 +247,11 @@ export default {
       obj.kw = obj.watts / 1000;
       obj.kwh = obj.kw * obj.hours;
       obj.cost = ((obj.kwh * obj.pence) / 100).toFixed(2);
+      obj.totalCost = (obj.items * obj.cost).toFixed(2);
       return obj;
+    },
+    deviceChange(key) {
+      this.devices[key] = this.calculator(this.devices[key]);
     },
   },
 };
