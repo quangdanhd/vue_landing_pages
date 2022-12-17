@@ -23,16 +23,16 @@
               >Home</router-link
             >
           </li>
-          <li class="nav-item">
-            <router-link class="nav-link" active-class="active" to="/about"
-              >About Us</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" active-class="active" to="/contact"
-              >Contact</router-link
-            >
-          </li>
+          <!--          <li class="nav-item">-->
+          <!--            <router-link class="nav-link" active-class="active" to="/about"-->
+          <!--              >About Us</router-link-->
+          <!--            >-->
+          <!--          </li>-->
+          <!--          <li class="nav-item">-->
+          <!--            <router-link class="nav-link" active-class="active" to="/contact"-->
+          <!--              >Contact</router-link-->
+          <!--            >-->
+          <!--          </li>-->
           <li class="nav-item">
             <router-link
               class="nav-link"
