@@ -54,3 +54,21 @@ input::-webkit-inner-spin-button {
     }
   }
 }
+
+.electricity-cost-calculator {
+  width: 1000px;
+  .household-appliance-item {
+    background: #4285f4;
+    &.active {
+      background: #34a853;
+    }
+    img {
+      width: 80px;
+    }
+  }
+  table {
+    td {
+      height: 48px;
+    }
+  }
+}

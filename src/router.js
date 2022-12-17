@@ -24,8 +24,14 @@ const routes = [
   {
     path: "/form-validate",
     name: "",
-    // component: ContactPage,
+    // component: FormValidate,
     component: () => import("@/components/FormValidate.vue"),
+  },
+  {
+    path: "/electricity-cost-calculator",
+    name: "",
+    // component: ElectricityCostCalculator,
+    component: () => import("@/components/ElectricityCostCalculator.vue"),
   },
   {
     path: "/:catchAll(.*)",

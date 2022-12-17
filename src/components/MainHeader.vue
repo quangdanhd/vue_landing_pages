@@ -41,6 +41,14 @@
               >Form Validate</router-link
             >
           </li>
+          <li class="nav-item">
+            <router-link
+              class="nav-link"
+              active-class="active"
+              to="/electricity-cost-calculator"
+              >Electricity Cost Calculator</router-link
+            >
+          </li>
         </ul>
         <form class="d-flex" role="search">
           <input
